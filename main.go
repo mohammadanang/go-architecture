@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	env "go-architecture/config"
+	env "go-arch/config"
 
 	"github.com/gin-gonic/gin"
 )
