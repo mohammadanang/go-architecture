@@ -56,7 +56,7 @@ func postgresConnect(s dbConfig) *gorm.DB {
 		port = "5432"
 	}
 
-	result, err := gorm.Open("postgres", "host="+s.host+" port="+port+" user="+s.username+" dbname="+s.name+" password="+s.password)
+	result, err := gorm.Open("postgres", "host="+s.host+" port="+port+" user="+s.username+" dbname="+s.name+" password="+s.password+" sslmode=disable")
 	if err != nil {
 		fmt.Println("Database connection error", err)
 	}
