@@ -3,14 +3,15 @@ package main
 import (
 	"net/http"
 
-	env "go-arch/config"
+	migrationController "go-arch/app/controllers"
+	. "go-arch/config"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	route := gin.Default()
-	port := ":" + env.Env["PORT"]
+	port := ":" + ENV["APP_PORT"]
 
 	route.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
@@ -18,6 +19,8 @@ func main() {
 			"message": "Welcome to the beginning of nothingness",
 		})
 	})
+
+	route.GET("migrate", migrationController.Migrate)
 
 	route.Run(port)
 }

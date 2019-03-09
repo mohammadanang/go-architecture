@@ -6,15 +6,16 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var Env map[string]string
+/*
+	How to use:
 
-// How to use:
-// Env["YOUR_KEY"]
-func init() {
+	Env["YOUR_KEY"]
+*/
+func Running() map[string]string {
 	result, err := godotenv.Read()
 	if err != nil {
 		fmt.Println("Error env file")
 	}
 
-	Env = result
+	return result
 }
