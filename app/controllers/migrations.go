@@ -2,19 +2,24 @@ package controllers
 
 import (
 	userModel "go-arch/app/models"
-	"go-arch/config"
-	"net/http"
+	. "go-arch/config"
+    "net/http"
+    "errors"
 
 	"github.com/gin-gonic/gin"
 )
 
 func Migrate(c *gin.Context) {
-	user := userModel.User{}
+    user := userModel.User{}
+    errorMsg := errors.New("")
 
-	result := config.DB.AutoMigrate(&user)
+    result := DB.AutoMigrate(&user)
+    if result.Error == nil {
+        errorMsg = errors.New("Migration error occured")
+    }
 
 	c.JSON(http.StatusOK, gin.H{
-		"message": result.Error,
+		"message": errorMsg,
 		"data":    result.Value,
 	})
 }
